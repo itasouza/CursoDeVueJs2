@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <title>Trabalhando com o DOM Java Script</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+  </head>
+  <body>
+     
+     <div class="container">
+
+      <div id="app">
+
+          <form>
+            <div class="form-group">
+              <label for="exampleInput">Evento keyup</label>
+              <input type="text" class="form-control" v-on:keyup="changeValue"   id="exampleInput"  placeholder="Evento keyup">
+            </div>
+         <!--
+            <div class="form-group">
+              <label for="exampleInput2">Evento keyup.enter</label>
+              <input type="text" class="form-control" v-on:keyup.enter="changeValue"   id="exampleInput2"  placeholder="Evento keyup.enter">
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInput3">Evento keyup.tab</label>
+              <input type="text" class="form-control" v-on:keyup.tab="changeValue"   id="exampleInput3"  placeholder="Evento keyup.tab">
+            </div>
+           -->
+            <div class="form-group">
+              <label for="exampleInput3">Evento keyup.delete</label>
+              <input type="text" class="form-control" v-on:keyup.delete="changeValue"   id="exampleInput3"  placeholder="Evento keyup.delete">
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInput4">Evento keyup.esc</label>
+              <input type="text" class="form-control" v-on:keyup.esc="changeValue"   id="exampleInput4"  placeholder="Evento keyup.esc">
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInput5">Evento keyup.up</label>
+              <input type="text" class="form-control" v-on:keyup.up="changeValue"   id="exampleInput5"  placeholder="Evento keyup.up">
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInput6">Evento keyup.dow</label>
+              <input type="text" class="form-control" v-on:keyup.dow="changeValue"   id="exampleInput6"  placeholder="Evento keyup.dow">
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInput7">Evento diferentes</label>
+              <input type="text" class="form-control" 
+                v-on:keyup.tab="changeValue"  
+                v-on:keyup.up="changeValueTwo"
+                v-on:blur="changeValueBlur"
+                v-on:keyup.enter="changeValueGetCode"
+               id="exampleInput7"  placeholder="Evento diferentes">
+            </div>
+
+
+          </form>
+
+
+              {{valueText}}
+
+      </div>
+     
+
+     </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+ 
+    <!-- versão de desenvolvimento, inclui aviso úteis no console  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+   
+
+    </script>
+
+    <script>
+       new Vue({
+         el:'#app',
+         data:{
+            valueText: ''
+         },
+         methods:{
+            
+            changeValue: function (event){
+               this.valueText = event.target.value
+            },
+
+            changeValueTwo: function (event){
+              alert('changeValueTwo')
+            },
+
+            changeValueBlur:function (event){
+             // alert('changeValueBlur')
+            },
+            changeValueGetCode:function(event){
+               console.log(event.keyCode)
+            }
+
+            
+         }
+       });
+    </script>
+
+  </body>
+</html>
