@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <title>Jogo 21 Vue JS</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="assets/favicon.png" type="image/png"> 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css" >
+  </head>
+  <body>
+
+
+     <div class="container text-center">
+         <h1 class="title">Jogo do 21</h1>
+         <div class="row  topo">
+           
+            <div class="col-6 active">
+                <img src="assets/player1.png" alt="Itamar">
+                <p>Itamar</p>
+            </div>
+            <div class="col-6">
+                <img src="assets/player2.png" alt="Nadia">
+                <p>Nadia</p>
+            </div>
+    
+         </div>
+
+         <div class="row">
+            <div class="controls col">
+                <a href="" class="btn btn-success">Pular</a>  
+                <a href="" class="btn btn-primary">Finalizar Jogo</a>  
+                <a href="" class="btn btn-danger">Resetar</a>  
+            </div>
+         </div>
+
+          <hr>
+
+           <div class="row text-center ">
+
+               <div class="col-6">
+                   <a href="">
+                        <img src="assets/baralho-cartas.png" alt="Baralho" class="carts ">
+                   </a>
+               </div>
+               <div class="col-6">
+                   <a href="">
+                       <img src="assets/carts/1.png" alt="Carta" class="cartas ">
+                   </a>
+               </div>
+
+           </div>
+
+     </div>
+
+     <div id="app">
+
+
+     </div>
+     
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+ 
+    <!-- versão de desenvolvimento, inclui aviso úteis no console  -->
+     <script src="vue.js"></script>
+   
+    <script>
+       new Vue({
+         el:'#app',
+         data:{
+           title:"Hello word"
+         }
+       });
+    </script>
+
+  </body>
+</html>
