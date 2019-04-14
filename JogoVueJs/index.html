@@ -13,26 +13,30 @@
   <body>
 
 
-     <div class="container text-center">
+     <div class="container text-center" id="app">
          <h1 class="title">Jogo do 21</h1>
          <div class="row  topo">
            
-            <div class="col-6 active">
+            <div v-bind:class="['col-6', playerActived == 1 ? 'active' : '']">
                 <img src="assets/player1.png" alt="Itamar">
-                <p>Itamar</p>
+                <button type="button" class="btn btn-primary">Itamar <span class="badge">{{numeroPlayerUm}}</span></button>
+                <p><strong>Pontos:</strong> {{playerUm.pontos}}</p>
             </div>
-            <div class="col-6">
+
+            <div v-bind:class="['col-6', playerActived == 2 ? 'active' : '']">
                 <img src="assets/player2.png" alt="Nadia">
-                <p>Nadia</p>
+                <button type="button" class="btn btn-danger">Nadia <span class="badge">{{numeroPlayerDois}}</span></button>  
+                
+                <p><strong>Pontos:</strong> {{playerDois.pontos}}</p>
             </div>
     
          </div>
 
          <div class="row">
             <div class="controls col">
-                <a href="" class="btn btn-success">Pular</a>  
-                <a href="" class="btn btn-primary">Finalizar Jogo</a>  
-                <a href="" class="btn btn-danger">Resetar</a>  
+                <a href="" class="btn btn-success" @click.prevent="mudarPlayer">Pular</a>  
+                <a href="" class="btn btn-primary" @click.prevent="finalizarJogo">Finalizar Jogo</a>  
+                <a href="" class="btn btn-danger" @click.prevent="resetarJogo">Resetar</a>  
             </div>
          </div>
 
@@ -41,13 +45,13 @@
            <div class="row text-center ">
 
                <div class="col-6">
-                   <a href="">
+                   <a href="#" @click.prevent="selecionarCarta">
                         <img src="assets/baralho-cartas.png" alt="Baralho" class="carts ">
                    </a>
                </div>
                <div class="col-6">
-                   <a href="">
-                       <img src="assets/carts/1.png" alt="Carta" class="cartas ">
+                   <a v-if="cartaSelecionada != '' ">
+                        <img :src="'assets/carts/' + cartaSelecionada + '.png'" alt="Carta" class="cartas ">
                    </a>
                </div>
 
@@ -55,11 +59,7 @@
 
      </div>
 
-     <div id="app">
 
-
-     </div>
-     
 
 
     <!-- Optional JavaScript -->
@@ -75,8 +75,79 @@
        new Vue({
          el:'#app',
          data:{
-           title:"Hello word"
+           playerActived:1,
+           playerUm:{
+               pontos : 0,
+               historico:[]
+           },
+           playerDois:{
+               pontos : 0,
+               historico:[]
+           },
+           cartaSelecionada: ''
+         },
+         methods:{
+             mudarPlayer(){
+                 this.playerActived = this.playerActived == 1 ? 2:1
+                 this.cartaSelecionada= ''
+             },
+            selecionarCarta(){
+               this.cartaSelecionada = Math.floor((Math.random() * 13) + 1)
+
+               if(this.playerActived == 1){
+                   this.playerUm.pontos += this.cartaSelecionada 
+                   this.playerUm.historico.push(this.cartaSelecionada)
+               }
+
+               if(this.playerActived == 2){
+                   this.playerDois.pontos += this.cartaSelecionada 
+                   this.playerDois.historico.push(this.cartaSelecionada)
+               }
+
+               if( this.playerUm.pontos >= 21 ||this.playerDois.pontos >= 21)
+                  this.finalizarJogo() 
+               
+            },
+            finalizarJogo(){
+                if(this.playerUm.pontos <= 21 && this.playerUm.pontos > this.playerDois.pontos )
+                alert('O Itamar ganhou!!')
+
+               else if(this.playerDois.pontos <= 21 && this.playerDois.pontos > this.playerUm.pontos )
+                alert('A Nadia ganhou!!')
+
+               else if(this.playerUm.pontos > 21)
+                 alert('A Nadia ganhou!!')
+
+              else if(this.playerDois.pontos > 21)
+                 alert('O Itamar ganhou!!')
+              else
+                 alert('Empate')
+
+               let vm= this
+               setTimeout(function(){
+                  vm.resetarJogo() 
+               },3000)   
+             },
+             resetarJogo(){
+                 this.playerUm.pontos =0
+                 this.playerDois.pontos=0
+                 this.cartaSelecionada= ''
+                 this.playerActived = 1
+
+             }
+
+
+
+         },
+         computed:{
+             numeroPlayerUm(){
+               return this.playerUm.historico.length
+             },
+             numeroPlayerDois(){
+               return this.playerDois.historico.length
+             }
          }
+
        });
     </script>
 
